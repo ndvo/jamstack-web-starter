@@ -3,6 +3,7 @@ tags:
   - product
 name: Grotesque Red Worm
 price: 132
+productType: cool
 price_monthly: 11
 image: /static/img/product12.jpg
 image_alt_text:

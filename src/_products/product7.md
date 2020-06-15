@@ -2,6 +2,7 @@
 tags:
   - product
 name: Different Blush Bridge
+productType: hot
 price: 120
 price_monthly: 10
 image: /static/img/product14.jpg

@@ -3,6 +3,7 @@ tags:
   - product
 name: Weary Black Wall
 price: 468
+productType: cool
 price_monthly: 39
 image: /static/img/product9.jpg
 image_alt_text:

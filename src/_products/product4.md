@@ -2,6 +2,7 @@
 tags:
   - product
 name: Wide-eyed Chocolate Face
+productType: cool
 price: 25
 image: /static/img/product11.jpg
 image_alt_text:

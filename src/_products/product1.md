@@ -2,6 +2,7 @@
 tags:
   - product
 name: Relieved Lime Jewel
+productType: cool
 price: 288
 price_monthly: 24
 image: /static/img/product8.jpg

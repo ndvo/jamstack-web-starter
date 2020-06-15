@@ -29,6 +29,21 @@ function increment(e) {
 	target.dispatchEvent(new Event("change"));
 }
 
+
+// Filter selection button
+function hideProductType(e) {
+  var toShow = e.target.value;
+  if (toShow == 'all') {
+    document.querySelectorAll('div.product')
+      .forEach(product => product.classList.remove('hidden'));
+  } else {
+    document.querySelectorAll('div.product')
+      .forEach(product => product.classList.add('hidden'));
+    document.querySelectorAll('div.product.'+toShow)
+      .forEach(product => product.classList.remove('hidden'));
+  }
+}
+
 const decrementButtons = document.querySelectorAll(
 	`button[data-action="decrement"]`
 );
@@ -40,6 +55,11 @@ const incrementButtons = document.querySelectorAll(
 const setVideoButtons = document.querySelectorAll(
   `button[data-action="setVideoUrl"]`
 );
+
+
+document.querySelector('select[data-action="hideProductType"]')
+  .addEventListener("change", hideProductType);
+
 
 decrementButtons.forEach((btn) => {
 	btn.addEventListener("click", decrement);

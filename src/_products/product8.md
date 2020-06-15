@@ -3,6 +3,7 @@ tags:
   - product
 name: Unsightly Salmon Nose
 price: 180
+productType: hot
 price_monthly: 15
 image: /static/img/product15.jpg
 image_alt_text:

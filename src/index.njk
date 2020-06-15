@@ -77,9 +77,16 @@ title: JAMStack e-commerce with Foxy.io
   {% include 'backToTop.njk' %}
 </section>
 
+<select class="m-4 p-1 text-darker border-2 border-light rounded" data-action="hideProductType">
+  <option value="all">Filter the results</option>
+  <option value="hot">Hot</option>
+  <option value="cool">Cool</option>
+</select>
+
 <section class="container p-2 pb-4 m-auto flex w-full flex-wrap items-stretch justify-start relative">
   {% for product in collections.product | sortByPriceHighToLow %}
-  <div class="flex flex-col items-center w-full lg:w-1/2 p-2">
+  <div class="product flex flex-col items-center w-full
+  lg:w-1/2 p-2 {{ product.data.productType}}">
     {# TIP: Use includes to avoid repetition
     11ty recognizes template files in the _includes folder.
     #}
