@@ -23,7 +23,7 @@ This project offers you a ready-made JAM Stack website with a hosted e-commerce 
 
 - **[JAM Stack?](https://jamstack.org/)** a serverless architecture providing pre-rendered websites.
 - **[Hosted e-commerce solution?](https://wiki.foxycart.com/v/2.0/foxycarts_reason_for_being)** an e-commerce solution professionally managed. All security and compliance concerns are taken care of. You can focus on building your content.
-- **[Continuous deployment?](https://www.netlify.com/products/workflow/)** your code will be easily and continuously delivered to production.
+- **[Continuous deployment?](https://www.netlify.com/products/workflow/)** your code will be continuously delivered to production.
 
 **[Convinced yet? Let's do it!](#lets-do-it)** Not quite? Go on.
 
@@ -36,7 +36,7 @@ Here's a longer version:
 - **performance:** a JAM Stack makes your website very fast. It's no miracle. Every page is pre-built during the compilation. Therefore not only is there no processing to be done when your client visits your store, but also the website can be distributed among many different servers across the globe with a service called Content Delivery Network (CDN). This means that your client will access the fastest possible server anywhere it is.
 - **security:** the JAM Stack architecture means the server does not run anything. Therefore, it won't run anything provided by a malicious user. It is also not connected to any database, so you'll have no issues there either. The shopping cart and payment processing are done by a [PCI Compliant Level 1 Service Provider](https://wiki.foxycart.com/static/foxycart_security).
 - **infrastructure costs:** the serverless architecture of JAM Stack requires only the CDN servers, which would probably be necessary anyway. 
-- **ease of development** there are few requirements for the development environment. Testing can be done without much effort, including manual and acceptance tests.
+- **development** there are few requirements for the development environment. Testing can be done without much effort, including manual and acceptance tests.
 
 ## Who?
 
@@ -46,7 +46,7 @@ The project was conceived after the guys at Foxy realized it could help many sma
 
 ## How to use this project?
 
-That's easy!
+Here'se how we do it:
 
 1. Fork it or Deploy it on Netlify
 1. Customize it by adding your brand and products
@@ -90,7 +90,7 @@ It's time to get our hands dirty to have our e-Commerce ready to sell!
 1. **Set your own texts:** there's a `src/_data/site.yaml` file. You'll find you can customize most of the site's texts there. You can set the navigation links, highlight texts, and display messages to your users.
  1. **Fetch your data on compile time:** there's a `src/_data/lorem.js` file. It demonstrates how to fetch data from your own API during compile time. This way, you can have your content updated on each new deploy. 
 
-**Remember to remove `src/_data/lorem.js` file.**
+**Remember to remove** `src/_data/lorem.js` **file**
 
 It makes real requests during build time. If you are not going to use the data fetched it is simply making unnecessary requests to the server and making your build time slower.
 
@@ -175,7 +175,7 @@ Next, let's add a class to our products so that we can distinguish the cool ones
 
 Finally, let's go to the `src/_assets/scripts/app.js` file and add some behavior to our select button.
 
-First, let's add a function that will filter the results.  This is certainly not the most performant function, but you can easily get what it does:
+First, let's add a function that will filter the results.  This is certainly not the most performant function, but it has a simple implementation. If the user chooses to show all, we remove the `hidden` attribute from all products. Otherwise we set them all to hidden and remove the hidden of those of the chosen type.
 
 ```js
 // Filter selection button
@@ -193,8 +193,6 @@ function hideProductType(e) {
 }
 ```
 
-It simply adds a 'hidden' class to all products and then removes from those we want to display.
-
 Now let's add this behaviour to the select button:
 
 ```js
@@ -211,13 +209,13 @@ There you go! Our select filter is ready. Not nice, but ready.
 
 Let's make it nice, shall we?
 
-This won't be difficult. First, let's replace the content of the default selection to "Filter the results."
+This will be fun. First, let's replace the content of the default selection to "Filter the results."
 
 ```html
   <option value="all">Filter the results</option>
 ```
 
-Now it's easier to understand. Next, thanks to Tailwind we'll simply add some classes to our select element.
+Next, thanks to Tailwind, we'll simply add some classes to our select element.
 
 ```html
 <select class="m-4 p-1 text-darker border-2 border-light rounded" data-action="hideProductType">
