@@ -197,7 +197,7 @@ It simply adds a 'hidden' class to all products and then removes from those we w
 
 Now let's add this behaviour to the select button:
 
-```
+```js
 document.querySelector('select[data-action="hideProductType"]')
   .addEventListener("change", hideProductType);
 ```
@@ -213,13 +213,13 @@ Let's make it nice, shall we?
 
 This won't be difficult. First, let's replace the content of the default selection to "Filter the results."
 
-```
+```html
   <option value="all">Filter the results</option>
 ```
 
 Now it's easier to understand. Next, thanks to Tailwind we'll simply add some classes to our select element.
 
-```
+```html
 <select class="m-4 p-1 text-darker border-2 border-light rounded" data-action="hideProductType">
 ```
 
