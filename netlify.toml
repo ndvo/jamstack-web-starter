@@ -14,4 +14,4 @@
   FOXYSTORESUBDOMAIN = "What's your foxystore subdomain?"
   
 [context.production]
-  base = 'main'
+  HEAD = 'main
