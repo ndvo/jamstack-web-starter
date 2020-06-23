@@ -13,5 +13,5 @@
   FOXYSTORELOGO="What's your logo URL? (Default: static/img/mylogo.png)"
   FOXYSTORESUBDOMAIN = "What's your foxystore subdomain?"
   
-[context.production.branch]
+[context.branch-deploy]
   command = "echo 'main'"
