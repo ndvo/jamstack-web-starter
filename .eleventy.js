@@ -2,12 +2,21 @@ const { DateTime } = require('luxon')
 const htmlmin = require('html-minifier')
 const yaml = require('js-yaml')
 const Image = require('@11ty/eleventy-img')
+const FoxySigner = require('@foxy.io/node-api/dist/utils/signer')
+
+console.log(FoxySigner);
+// Creates a hmac signer to authenticate the add to cart
+// buttons
+let hmacSign = null
+if (process.env.FOXYSTORESECRET) {
+  hmacSign = new FoxySigner.FoxySigner()
+  hmacSign.setSecret(process.env.FOXYSTORESECRET)
+}
 
 // Setting this conf up front allow us to use them in our
 // functions
 
 module.exports = function (eleventyConfig) {
-
   var conf = {
     dir: {
       input: 'src/',
@@ -73,6 +82,16 @@ module.exports = function (eleventyConfig) {
 
   // Folders to copy to build dir (See. 1.1)
   eleventyConfig.addPassthroughCopy('src/static')
+
+  if (hmacSign) {
+    eleventyConfig.addTransform('foxyHmacValidation', function (content, outputPath) {
+      if (outputPath.endsWith('.html')) {
+        console.log('Signing output')
+        content = hmacSign.htmlString(content)
+      }
+      return content
+    })
+  }
 
   if (process.env.ELEVENTY_ENV === 'production') {
     // Minify HTML (including inlined CSS and JS)

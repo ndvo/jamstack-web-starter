@@ -13,6 +13,8 @@ foxyDefaultValues = {
 /**
  * If you're not creating new Foxy environment variables,
  * it's probably not a good idea to change the values bellow.
+ * FOXYSTORESECRET should not be used in the templates. You
+ * can find it in process.env['FOXYSTORESECRET']
  */
 foxyEnvironmentVariables = {
   FOXYSTORESUBDOMAIN:'subdomain',
