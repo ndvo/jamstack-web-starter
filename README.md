@@ -227,6 +227,18 @@ We made our select have rounded borders. We also used a configurable color from 
 
 Now, if someone wishes to change the theme, a quick tweak to the config file will do.
 
+# Using HMAC Validation
+
+Foxy.io supports using HMAC authentication codes to criptographically protect your e-commerce website, stopping users from tampering with products features and prices.
+
+In order to use this feature you need to:
+- provide your Store Secret as an environment variable
+- provide a code for each product
+- configure your store to use HMAC validation
+
+
+
+
 # Where to go from here?
 
 Go ahead and click the deploy button. It will fork this repository for you and deploy a version to production. Go ahead and customize the files at will. You'll find some handy tips along the way.
