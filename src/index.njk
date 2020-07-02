@@ -148,7 +148,13 @@ title: JAMStack e-commerce with Foxy.io
             By setting the variable addToCartBtn here we can feed the include with
             the data it needs
             -->
-            {% set addToCartBtn={ product: product.data, currency: site.currency_symbol, price: product.data.price, color: 'primary', text: 'Once' } %}
+            {% set addToCartBtn={ 
+              product: product.data,
+              currency: site.currency_symbol,
+              price: product.data.price,
+              color: 'primary',
+              code: product.data.code,
+              text: 'Once' } %}
             {% if product.data.price < 10000 %}
               {% include "addtocart_button.njk" %}
             {% endif %}
@@ -159,6 +165,7 @@ title: JAMStack e-commerce with Foxy.io
               currency: site.currency_symbol,
               price: product.data.price_monthly,
               color: 'primary-dark',
+              code: product.data.code,
               text: 'Monthly' 
               }
             %}
