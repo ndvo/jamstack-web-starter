@@ -2,7 +2,7 @@
 @tailwind components;
 
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 /* TIP: You can use Tailwind utilities in your CSS files */
@@ -22,7 +22,7 @@ input[type="number"] {
 }
 
 img#logo {
-  max-height: 175px;
+	max-height: 175px;
 }
 .custom-number-input input:focus {
 	outline: none !important;
@@ -31,5 +31,40 @@ img#logo {
 	outline: none !important;
 }
 
+#content > hr {
+	@apply m-4 mx-8 border-primary;
+}
+
+[data-foxy-product-container] div.text-dark.text-base > p:last-of-type {
+	@apply pb-0;
+}
+
+h1 {
+	@apply text-3xl text-left text-primary-dark font-bold leading-none pb-2;
+}
+h2 {
+	@apply text-2xl text-left text-primary font-bold leading-none pb-2;
+}
+h3 {
+	@apply text-xl text-left text-primary font-bold leading-none pb-2;
+}
+h4 {
+	@apply text-lg text-left text-primary font-bold leading-none pb-2;
+}
+p,
+ol,
+ul {
+	@apply pb-4;
+}
+ul {
+	@apply list-disc px-8 text-left;
+}
+ol {
+	@apply list-decimal px-8 text-left;
+}
+ul li,
+ol li {
+	@apply pb-1;
+}
 
 @tailwind utilities;

@@ -63,12 +63,15 @@ typings/
 # Mac
 .DS_Store
 
-# Build 
+# Build
 dist
 
 # Vim
 .*.un~
 .*.swp
+
+# VS Code
+.vscode
 
 # Don't commit temp build files
 src/static/app.bundled.js

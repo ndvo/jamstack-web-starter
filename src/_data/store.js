@@ -5,33 +5,32 @@
  *
  */
 foxyDefaultValues = {
-  subdomain: "jamstackecommerceexample",
-  name: "My Store",
-  logo: "static/img/mylogo.png" // Relative to the web root
-}
+	storedomain: "jamstackecommerceexample",
+	name: "My Store",
+	logo: "static/logo.png", // Relative to the web root
+};
 
 /**
  * If you're not creating new Foxy environment variables,
  * it's probably not a good idea to change the values bellow.
- * FOXYSTORESECRET should not be used in the templates. You
- * can find it in process.env['FOXYSTORESECRET']
  */
 foxyEnvironmentVariables = {
-  FOXYSTORESUBDOMAIN:'subdomain',
-  FOXYSTORENAME:'name',
-  FOXYSTORELOGO:'logo'
+	FOXYSTOREDOMAIN: "storedomain",
+	FOXYSTORENAME: "name",
+	FOXYSTORELOGO: "logo",
 };
 
 foxySettings = {};
 
 for (let e of Object.keys(foxyEnvironmentVariables)) {
-  if (process.env[e]) {
-    foxySettings[foxyEnvironmentVariables[e]] = process.env[e];
-  } else {
-    foxySettings[foxyEnvironmentVariables[e]] = foxyDefaultValues[foxyEnvironmentVariables[e]];
-  }
+	if (process.env[e]) {
+		foxySettings[foxyEnvironmentVariables[e]] = process.env[e];
+	} else {
+		foxySettings[foxyEnvironmentVariables[e]] =
+			foxyDefaultValues[foxyEnvironmentVariables[e]];
+	}
 }
 
-foxySettings.cart_url = `https://${foxySettings.subdomain}.foxycart.com/cart`;
+foxySettings.cart_url = `https://${foxySettings.storedomain}/cart`;
 
 module.exports = foxySettings;

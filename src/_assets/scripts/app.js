@@ -1,8 +1,17 @@
-// Changes the video 
-function setVideoUrl(el) {
-  document.querySelector('#video-player')
-    .setAttribute('src', el.target.getAttribute('data-url'));
-}
+// Changes the video
+setVideoUrl = function (el) {
+	console.log("foo");
+	console.log(el);
+	document
+		.querySelector("#video-player")
+		.setAttribute("src", el.target.getAttribute("data-url"));
+};
+document
+	.querySelectorAll('button[data-action="setVideoUrl"]')
+	.forEach((btn) => {
+		console.log("clicked");
+		btn.addEventListener("click", setVideoUrl);
+	});
 
 // Quantity selector button
 // From https://tailwindcomponents.com/component/number-input-counter
@@ -29,32 +38,24 @@ function increment(e) {
 	target.dispatchEvent(new Event("change"));
 }
 
-document.querySelectorAll(`button[data-action="decrement"]`)
-  .forEach((btn) => {
-    btn.addEventListener("click", decrement);
-  });
+document.querySelectorAll(`button[data-action="decrement"]`).forEach((btn) => {
+	btn.addEventListener("click", decrement);
+});
 
-document.querySelectorAll(`button[data-action="increment"]`)
-  .forEach((btn) => {
-    btn.addEventListener("click", increment);
-  });
-
-document.querySelectorAll(`button[data-action="setVideoUrl"]`)
-  .forEach((btn) => {
-    btn.addEventListener("click", setVideoUrl)
-  });
+document.querySelectorAll(`button[data-action="increment"]`).forEach((btn) => {
+	btn.addEventListener("click", increment);
+});
 
 // Quantity connected to Foxy links
-document.querySelectorAll("input[name='quantity']")
-  .forEach(qty => {
-    qty.addEventListener("change", function (e) {
-      const quantity = e.target.value;
-      let foo = e.target.closest("[data-foxy-product-container]").querySelectorAll(
-        "[data-foxy-product-link]"
-      ).forEach(function (l) {
-        // console.log(l.href);
-        l.href = l.href.replace(/&quantity=\d+/g, "&quantity=" + quantity);
-      });
-    });
-  });
-
+document.querySelectorAll("input[name='quantity']").forEach((qty) => {
+	qty.addEventListener("change", function (e) {
+		const quantity = e.target.value;
+		let foo = e.target
+			.closest("[data-foxy-product-container]")
+			.querySelectorAll("[data-foxy-product-link]")
+			.forEach(function (l) {
+				// console.log(l.href);
+				l.href = l.href.replace(/&quantity=\d+/g, "&quantity=" + quantity);
+			});
+	});
+});
