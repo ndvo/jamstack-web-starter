@@ -22,52 +22,65 @@ let markdown = require("markdown-it")({
 });
 
 module.exports = function (eleventyConfig) {
-  var conf = {
-    dir: {
-      input: "src/",
-      output: "dist",
-      includes: "_includes",
-      layouts: "_layouts"
-    },
-    templateFormats: ["html", "md", "njk"],
-    htmlTemplateEngine: "njk",
+	var conf = {
+		dir: {
+			input: "src/",
+			output: "dist",
+			includes: "_includes",
+			layouts: "_layouts",
+		},
+		templateFormats: ["html", "md", "njk"],
+		htmlTemplateEngine: "njk",
 
 		// 1.1 Enable eleventy to pass dirs specified above
 		passthroughFileCopy: true,
 	};
 
-  eleventyConfig.addNunjucksAsyncShortcode(
-    "productPicture"
-    , async function (src, alt) {
-      var src = "src" + src
-      var options = {
-        // Optional: use falsy value to fall back to native image size
-        widths: [221, 228, 284, 297, 324, 332, 375, 475],
-        formats: ["jpeg"], // "png", "webp"
-        urlPath: "/static/img/",
-        outputDir: conf.dir.output + "/static/img/",
-        cacheDuration: "15d"
-      }
-      if (alt === undefined) {
-        // You bet we throw an error on missing alt (alt="" works okay)
-        throw new Error(`Missing \`alt\` on myResponsiveImage from: ${src}`)
-      }
-      const stats = await Image(src, options)
-      const lowestSrc = stats.jpeg[0]
-      const sizes = " (max-width: 257px) 221px," +
-        "(max-width: 360px) 324px," +
-        "(max-width: 411px) 375px," +
-        "(max-width: 320px) 284px," +
-        "(max-width: 667px) 297px," +
-        "(max-width: 1023px) 475px," +
-        "(max-width: 1024px) 228px," +
-        "(max-width: 1440px) 332px," +
-        "332px"
-      // Iterate over formats and widths
-      return `<picture>
-      ${Object.values(stats).map(imageFormat => {
-        return `  <source type="image/${imageFormat[0].format}" srcset="${imageFormat.map(entry => `${entry.url} ${entry.width}w`).join(", ")}" sizes="${sizes}">`
-      }).join("\n")}
+	eleventyConfig.addNunjucksShortcode(
+		"markdown",
+		(content) => `${markdown.render(content)}`
+	);
+
+	eleventyConfig.addNunjucksAsyncShortcode("productPicture", async function (
+		src,
+		alt
+	) {
+		var src = "src" + src;
+		var options = {
+			// Optional: use falsy value to fall back to native image size
+			widths: [221, 228, 284, 297, 324, 332, 375, 475],
+			formats: ["jpeg"], // 'png', 'webp'
+			urlPath: "/static/img/",
+			outputDir: conf.dir.output + "/static/img/",
+			cacheDuration: "15d",
+		};
+		if (alt === undefined) {
+			// You bet we throw an error on missing alt (alt="" works okay)
+			throw new Error(`Missing \`alt\` on myResponsiveImage from: ${src}`);
+		}
+		const stats = await Image(src, options);
+		const lowestSrc = stats.jpeg[0];
+		const sizes =
+			" (max-width: 257px) 221px," +
+			"(max-width: 360px) 324px," +
+			"(max-width: 411px) 375px," +
+			"(max-width: 320px) 284px," +
+			"(max-width: 667px) 297px," +
+			"(max-width: 1023px) 475px," +
+			"(max-width: 1024px) 228px," +
+			"(max-width: 1440px) 332px," +
+			"332px";
+		// Iterate over formats and widths
+		return `<picture>
+      ${Object.values(stats)
+				.map((imageFormat) => {
+					return `  <source type="image/${
+						imageFormat[0].format
+					}" srcset="${imageFormat
+						.map((entry) => `${entry.url} ${entry.width}w`)
+						.join(", ")}" sizes="${sizes}">`;
+				})
+				.join("\n")}
         <img
           alt="${alt}"
           src="${lowestSrc.url}"
