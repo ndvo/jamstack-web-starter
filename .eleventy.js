@@ -1,16 +1,16 @@
-const { DateTime } = require("luxon")
-const htmlmin = require("html-minifier")
-const yaml = require("js-yaml")
-const Image = require("@11ty/eleventy-img")
-const FoxySigner = require("@foxy.io/node-api/dist/utils/signer")
+const { DateTime } = require("luxon");
+const htmlmin = require("html-minifier");
+const yaml = require("js-yaml");
+const Image = require("@11ty/eleventy-img");
+const FoxySigner = require("@foxy.io/node-api/dist/utils/signer");
 
 console.log(FoxySigner);
 // Creates a hmac signer to authenticate the add to cart
 // buttons
 let hmacSign = null
 if (process.env.FOXYSTORESECRET) {
-  hmacSign = new FoxySigner.FoxySigner()
-  hmacSign.setSecret(process.env.FOXYSTORESECRET)
+	hmacSign = new FoxySigner.FoxySigner();
+	hmacSign.setSecret(process.env.FOXYSTORESECRET);
 }
 
 // Setting this conf up front allow us to use them in our
@@ -91,9 +91,9 @@ module.exports = function (eleventyConfig) {
  	if (hmacSign) {
  		eleventyConfig.addTransform('foxyHmacValidation', function (content, outputPath) {
 			if (outputPath.endsWith('.html')) {
-				content = hmacSign.htmlString(content)
+				content = hmacSign.htmlString(content);
 			}
-			return content
+			return content;
 		})
 	}
 
